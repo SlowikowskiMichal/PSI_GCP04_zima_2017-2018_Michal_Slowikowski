@@ -1,0 +1,497 @@
+New session: Scen1.AndTrainingSession
+After: 202389 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,144621345121848
+W1: 0,143254459103803
+W2: -0,144622786782072
+---------------------------------------------------
+After: 24332 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,065828591734702
+W1: 0,0835937764177214
+W2: -0,0836108275229027
+---------------------------------------------------
+After: 6411 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,183573618761024
+W1: 0,000201657858864339
+W2: -0,183722977087539
+---------------------------------------------------
+After: 644 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,183173618760972
+W1: 0,00160165785886426
+W2: -0,184322977087612
+---------------------------------------------------
+After: 68 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,180173618760972
+W1: 0,0216016578588642
+W2: -0,198322977087611
+---------------------------------------------------
+After: 9 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,150173618760972
+W1: 0,121601657858864
+W2: -0,238322977087611
+---------------------------------------------------
+After: 6 generations
+Perceptron passed training: True
+Weights: 
+W0: 1,65017361876097
+W1: 1,02160165785886
+W2: -2,23832297708761
+---------------------------------------------------
+After: 6 generations
+Perceptron passed training: True
+Weights: 
+W0: 20,650173618761
+W1: 10,0216016578589
+W2: -29,2383229770876
+---------------------------------------------------
+After: 6 generations
+Perceptron passed training: True
+Weights: 
+W0: 200,650173618761
+W1: 100,021601657859
+W2: -299,238322977088
+---------------------------------------------------
+After: 6 generations
+Perceptron passed training: True
+Weights: 
+W0: 2000,65017361876
+W1: 1000,02160165786
+W2: -2999,23832297709
+---------------------------------------------------
+New session: Scen1.TrainingSeasions.AndTrainingSession00X1
+After: 500586 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,650173618760972
+W1: -0,239491342141356
+W2: -9,7708867604831E-07
+---------------------------------------------------
+After: 52871 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,538892111991948
+W1: 0,458160292494078
+W2: -0,458171055768925
+---------------------------------------------------
+After: 4221 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,897697139018074
+W1: 0,259558173932907
+W2: -0,259633208127257
+---------------------------------------------------
+After: 423 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,897697139018074
+W1: 0,25955817393286
+W2: -0,260133208127289
+---------------------------------------------------
+After: 43 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,897697139018074
+W1: 0,26155817393286
+W2: -0,265133208127289
+---------------------------------------------------
+After: 6 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,897697139018074
+W1: 0,181558173932861
+W2: -0,375133208127289
+---------------------------------------------------
+After: 4 generations
+Perceptron passed training: True
+Weights: 
+W0: 2,89769713901807
+W1: -0,318441826067139
+W2: -1,67513320812729
+---------------------------------------------------
+After: 4 generations
+Perceptron passed training: True
+Weights: 
+W0: 20,8976971390181
+W1: 0,68155817393286
+W2: -19,6751332081273
+---------------------------------------------------
+After: 4 generations
+Perceptron passed training: True
+Weights: 
+W0: 200,897697139018
+W1: 0,681558173932856
+W2: -199,675133208127
+---------------------------------------------------
+After: 4 generations
+Perceptron passed training: True
+Weights: 
+W0: 2000,89769713902
+W1: 0,681558173932899
+W2: -1999,67513320813
+---------------------------------------------------
+New session: Scen1.TrainingSeasions.AndTrainingSession0XX1
+After: 324868 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,897697139018074
+W1: 0,681558173932861
+W2: -2,08125515012323E-07
+---------------------------------------------------
+After: 84595 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,646871645770442
+W1: 0,568210345957526
+W2: -9,9508746436605E-06
+---------------------------------------------------
+After: 299 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,00567667279656821
+W1: 0,262908227398483
+W2: -6,21032345396627E-05
+---------------------------------------------------
+After: 31 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,00567667279656821
+W1: 0,262908227398483
+W2: -0,000262103234539806
+---------------------------------------------------
+After: 4 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,00567667279656821
+W1: 0,262908227398483
+W2: -0,000262103234539787
+---------------------------------------------------
+After: 2 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,00567667279656821
+W1: 0,262908227398483
+W2: -0,0702621032345398
+---------------------------------------------------
+After: 3 generations
+Perceptron passed training: True
+Weights: 
+W0: 1,00567667279657
+W1: 1,26290822739848
+W2: -0,97026210323454
+---------------------------------------------------
+After: 3 generations
+Perceptron passed training: True
+Weights: 
+W0: 10,0056766727966
+W1: 10,2629082273985
+W2: -9,97026210323454
+---------------------------------------------------
+After: 3 generations
+Perceptron passed training: True
+Weights: 
+W0: 100,005676672797
+W1: 100,262908227398
+W2: -99,9702621032345
+---------------------------------------------------
+After: 3 generations
+Perceptron passed training: True
+Weights: 
+W0: 1000,0056766728
+W1: 1000,2629082274
+W2: -999,970262103235
+---------------------------------------------------
+New session: Scen1.OrTrainingSession
+After: 29739 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,00567667279656821
+W1: 0,262908227398483
+W2: -1,0323454887388E-07
+---------------------------------------------------
+After: 51457 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,842056385633562
+W1: 0,66418749124938
+W2: -2,24607109626754E-06
+---------------------------------------------------
+After: 8823 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,559666439685815
+W1: 0,0535832541312944
+W2: -2,65507880844552E-05
+---------------------------------------------------
+After: 884 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,559666439685815
+W1: 0,0535832541312944
+W2: -0,000826550788166062
+---------------------------------------------------
+After: 90 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,559666439685815
+W1: 0,0535832541312944
+W2: -0,00782655078816593
+---------------------------------------------------
+After: 10 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,559666439685815
+W1: 0,0535832541312944
+W2: -0,0178265507881652
+---------------------------------------------------
+After: 3 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,559666439685815
+W1: 1,05358325413129
+W2: -0,117826550788165
+---------------------------------------------------
+After: 4 generations
+Perceptron passed training: True
+Weights: 
+W0: 10,5596664396858
+W1: 10,0535832541313
+W2: -9,11782655078817
+---------------------------------------------------
+After: 4 generations
+Perceptron passed training: True
+Weights: 
+W0: 100,559666439686
+W1: 100,053583254131
+W2: -99,1178265507882
+---------------------------------------------------
+After: 4 generations
+Perceptron passed training: True
+Weights: 
+W0: 1000,55966643969
+W1: 1000,05358325413
+W2: -999,117826550788
+---------------------------------------------------
+New session: Scen1.TrainingSeasions.OrTrainingSession0X11
+After: 882175 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,559666439685815
+W1: 0,0535832541312944
+W2: -5,50792695421842E-07
+---------------------------------------------------
+After: 96644 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,556364466695285
+W1: 0,600191942229956
+W2: -3,51898671440101E-06
+---------------------------------------------------
+After: 6352 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,751549206558405
+W1: 0,696169087521811
+W2: -4,58169773364204E-05
+---------------------------------------------------
+After: 637 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,751549206558405
+W1: 0,696169087521811
+W2: -0,000945816977390593
+---------------------------------------------------
+After: 65 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,751549206558405
+W1: 0,696169087521811
+W2: -0,00494581697739047
+---------------------------------------------------
+After: 8 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,751549206558405
+W1: 0,696169087521811
+W2: -0,06494581697739
+---------------------------------------------------
+After: 2 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,751549206558405
+W1: 0,696169087521811
+W2: -0,36494581697739
+---------------------------------------------------
+After: 3 generations
+Perceptron passed training: True
+Weights: 
+W0: 10,7515492065584
+W1: 0,696169087521811
+W2: -9,36494581697739
+---------------------------------------------------
+After: 3 generations
+Perceptron passed training: True
+Weights: 
+W0: 100,751549206558
+W1: 0,696169087521811
+W2: -99,3649458169774
+---------------------------------------------------
+After: 3 generations
+Perceptron passed training: True
+Weights: 
+W0: 1000,75154920656
+W1: 0,696169087521811
+W2: -999,364945816977
+---------------------------------------------------
+New session: Scen1.TrainingSeasions.OrTrainingSessionX111
+After: 1 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,110354233584532
+W1: 0,390866968962768
+W2: 0,818862033457897
+---------------------------------------------------
+After: 1 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,110354233584532
+W1: 0,390866968962768
+W2: 0,818862033457897
+---------------------------------------------------
+After: 1 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,110354233584532
+W1: 0,390866968962768
+W2: 0,818862033457897
+---------------------------------------------------
+After: 1 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,110354233584532
+W1: 0,390866968962768
+W2: 0,818862033457897
+---------------------------------------------------
+After: 1 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,110354233584532
+W1: 0,390866968962768
+W2: 0,818862033457897
+---------------------------------------------------
+After: 1 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,110354233584532
+W1: 0,390866968962768
+W2: 0,818862033457897
+---------------------------------------------------
+After: 1 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,110354233584532
+W1: 0,390866968962768
+W2: 0,818862033457897
+---------------------------------------------------
+After: 1 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,110354233584532
+W1: 0,390866968962768
+W2: 0,818862033457897
+---------------------------------------------------
+After: 1 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,110354233584532
+W1: 0,390866968962768
+W2: 0,818862033457897
+---------------------------------------------------
+After: 1 generations
+Perceptron passed training: True
+Weights: 
+W0: 0,110354233584532
+W1: 0,390866968962768
+W2: 0,818862033457897
+---------------------------------------------------
+New session: Scen1.TrainingSeasions.XORTrainingSession
+After: 1000000 generations
+Perceptron passed training: False
+Weights: 
+W0: -1,76641555799333E-06
+W1: -2,03103369280572E-06
+W2: 1,03345518706763E-06
+---------------------------------------------------
+After: 1000000 generations
+Perceptron passed training: False
+Weights: 
+W0: -1,82056275791055E-05
+W1: -4,28947322155261E-06
+W2: 6,16456252988781E-06
+---------------------------------------------------
+After: 1000000 generations
+Perceptron passed training: False
+Weights: 
+W0: -0,000275384702664245
+W1: 7,30679952654409E-06
+W2: 8,25936558748195E-05
+---------------------------------------------------
+After: 1000000 generations
+Perceptron passed training: False
+Weights: 
+W0: -0,00117753675169229
+W1: -0,000513215487130784
+W2: 0,000786870390543168
+---------------------------------------------------
+After: 1000000 generations
+Perceptron passed training: False
+Weights: 
+W0: -0,00887968880072262
+W1: -0,0158337377737433
+W2: 0,00709114712527521
+---------------------------------------------------
+After: 1000000 generations
+Perceptron passed training: False
+Weights: 
+W0: -0,146996921928132
+W1: -0,0532479043832271
+W2: 0,0899718809360507
+---------------------------------------------------
+After: 1000000 generations
+Perceptron passed training: False
+Weights: 
+W0: -0,237504101003289
+W1: 0,678733691889203
+W2: 0,210468310029464
+---------------------------------------------------
+After: 1000000 generations
+Perceptron passed training: False
+Weights: 
+W0: -9,32801128007845
+W1: 0,710715288161634
+W2: 0,330964739122876
+---------------------------------------------------
+After: 1000000 generations
+Perceptron passed training: False
+Weights: 
+W0: -99,4185184591536
+W1: 0,742696884434068
+W2: 0,451461168216284
+---------------------------------------------------
+After: 1000000 generations
+Perceptron passed training: False
+Weights: 
+W0: -999,345405351066
+W1: 0,373399216855546
+W2: 0,0871377429399445
+---------------------------------------------------

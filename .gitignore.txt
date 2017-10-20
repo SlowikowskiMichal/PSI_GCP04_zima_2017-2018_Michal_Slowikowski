@@ -1,0 +1,5 @@
+Scen1/bin/*
+Scen1/obj/*
+Scen1/Properties/*
+Scen1/App
+Scen1/Scen1/

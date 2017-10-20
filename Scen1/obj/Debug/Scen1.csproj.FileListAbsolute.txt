@@ -1,0 +1,6 @@
+c:\users\slovi\documents\visual studio 2017\Projects\Scen1\Scen1\bin\Debug\Scen1.exe.config
+c:\users\slovi\documents\visual studio 2017\Projects\Scen1\Scen1\bin\Debug\Scen1.exe
+c:\users\slovi\documents\visual studio 2017\Projects\Scen1\Scen1\bin\Debug\Scen1.pdb
+c:\users\slovi\documents\visual studio 2017\Projects\Scen1\Scen1\obj\Debug\Scen1.csprojResolveAssemblyReference.cache
+c:\users\slovi\documents\visual studio 2017\Projects\Scen1\Scen1\obj\Debug\Scen1.exe
+c:\users\slovi\documents\visual studio 2017\Projects\Scen1\Scen1\obj\Debug\Scen1.pdb
