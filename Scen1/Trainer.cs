@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Scen1
 {
@@ -28,7 +24,7 @@ namespace Scen1
 
             do
             {
-                if(perceptronRule(ref perceptronToTrain) == 0)
+                if (perceptronRule(ref perceptronToTrain) == 0)
                 {
                     passed = true;
                 }
@@ -63,8 +59,26 @@ namespace Scen1
             }
 
             perceptron.setWeights(weights);
-
+            printDifferenceBetweenTargetAndPerceptronOutput(perceptron);
             return totalError;
+        }
+
+        private void printDifferenceBetweenTargetAndPerceptronOutput(Perceptron perceptronToTrain)
+        {
+            for (int i = 0; i < expectedOutputs.Length; i++)
+            {
+                double inputSummary = perceptronToTrain.inputSummary(inputDataSets[i]);
+                int afterActivation = perceptronToTrain.getResult(inputDataSets[i]);
+                Console.Write("In:");
+                foreach (int input in inputDataSets[i])
+                {
+                    Console.Write(input);
+                }
+                Console.WriteLine("\tExp:\t" + expectedOutputs[i] +
+                    "\tActv:\t" + afterActivation +
+                    "\tGot:\t" + inputSummary +
+                    "\tErr:\t" + Math.Abs(((double)expectedOutputs[i] - inputSummary)));
+            }
         }
     }
 }

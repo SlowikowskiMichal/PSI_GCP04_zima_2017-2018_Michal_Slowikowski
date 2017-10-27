@@ -1,6 +1,6 @@
-c:\users\slovi\documents\visual studio 2017\Projects\Scen1\Scen1\bin\Debug\Scen1.exe.config
-c:\users\slovi\documents\visual studio 2017\Projects\Scen1\Scen1\bin\Debug\Scen1.exe
-c:\users\slovi\documents\visual studio 2017\Projects\Scen1\Scen1\bin\Debug\Scen1.pdb
-c:\users\slovi\documents\visual studio 2017\Projects\Scen1\Scen1\obj\Debug\Scen1.csprojResolveAssemblyReference.cache
-c:\users\slovi\documents\visual studio 2017\Projects\Scen1\Scen1\obj\Debug\Scen1.exe
-c:\users\slovi\documents\visual studio 2017\Projects\Scen1\Scen1\obj\Debug\Scen1.pdb
+c:\users\slovi\documents\visual studio 2017\Projects\PSI1\PSI1\obj\Debug\Scen1.csprojResolveAssemblyReference.cache
+c:\users\slovi\documents\visual studio 2017\Projects\PSI1\PSI1\bin\Debug\PSI1.exe.config
+c:\users\slovi\documents\visual studio 2017\Projects\PSI1\PSI1\bin\Debug\PSI1.exe
+c:\users\slovi\documents\visual studio 2017\Projects\PSI1\PSI1\bin\Debug\PSI1.pdb
+c:\users\slovi\documents\visual studio 2017\Projects\PSI1\PSI1\obj\Debug\PSI1.exe
+c:\users\slovi\documents\visual studio 2017\Projects\PSI1\PSI1\obj\Debug\PSI1.pdb

@@ -1,10 +1,6 @@
-﻿using Scen1.TrainingSeasions;
+﻿using Scen1.TrainingSessions;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Scen1
 {
@@ -16,19 +12,7 @@ namespace Scen1
             FileStream ostrm;
             StreamWriter writer;
             TextWriter oldOut = Console.Out;
-            try
-            {
-                ostrm = new FileStream("./log.txt", FileMode.OpenOrCreate, FileAccess.Write);
-                writer = new StreamWriter(ostrm);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Cannot open log.txt for writing");
-                Console.WriteLine(e.Message);
-                return;
-            }
 
-            Console.SetOut(writer);
             TrainingSession[] sessions = new TrainingSession[] {
                 new AndTrainingSession(),
                 new AndTrainingSession00X1(),
@@ -36,17 +20,52 @@ namespace Scen1
                 new OrTrainingSession(),
                 new OrTrainingSession0X11(),
                 new OrTrainingSessionX111(),
-                new XORTrainingSession()
             };
             foreach (TrainingSession session in sessions)
             {
-                Console.WriteLine("New session: " + session.GetType());
-                for (double i = 0.000001; i < 10000.0; i *= 10)
+                try
+                {
+                    ostrm = new FileStream(session.GetType() + "Log.txt", FileMode.Create, FileAccess.Write);
+                    writer = new StreamWriter(ostrm);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Cannot open " + session.GetType() + "Log.txt for writing");
+                    Console.WriteLine(e.Message);
+                    return;
+                }
+                Console.SetOut(writer);
+
+
+                for (double i = 0.000001; i <= 1000.0; i *= 10)
                 {
                     session.run(i);
+  //                  Console.WriteLine("Learning Rate: " + i);
+  //                  Console.WriteLine("---------------------------------------------------");
                 }
+
+                writer.Close();
+                ostrm.Close();
             }
             Console.SetOut(oldOut);
+
+            TrainingSession xor = new XORTrainingSession();
+            double xorLearningRate = 0.1;
+            try
+            {
+                ostrm = new FileStream(xor.GetType() + "Log.txt", FileMode.Create, FileAccess.Write);
+                writer = new StreamWriter(ostrm);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Cannot open " + xor.GetType() + "Log.txt for writing");
+                Console.WriteLine(e.Message);
+                return;
+            }
+            Console.SetOut(writer);
+            xor.run(xorLearningRate);
+    //        Console.WriteLine("Learning Rate: " + xorLearningRate);
+    //        Console.WriteLine("---------------------------------------------------");
             writer.Close();
             ostrm.Close();
         }

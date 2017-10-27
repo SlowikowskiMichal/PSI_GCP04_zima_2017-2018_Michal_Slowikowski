@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Scen1.TrainingSeasions
+﻿namespace Scen1.TrainingSessions
 {
-    class AndTrainingSession00X1 : TrainingSession
+    class AndTrainingSession00X1 : TrainingSessionWithIncompleteInput
     {
         protected override int[][] inputData
         {
@@ -23,6 +17,11 @@ namespace Scen1.TrainingSeasions
         protected override int[] expectedOutput
         {
             get { return new int[] { 0, 0, 1 }; }
+        }
+
+        protected override int[] expectedOutputFull
+        {
+            get { return new int[] { 0, 0, 0, 1 }; }
         }
     }
 }

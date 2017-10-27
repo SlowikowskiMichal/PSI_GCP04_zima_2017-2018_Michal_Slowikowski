@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{49BB4E69-E349-4807-947B-1F162194DC41}</ProjectGuid>
+    <ProjectGuid>{CD54DB65-78B3-4503-BC3D-AD674CC63005}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Scen1</RootNamespace>
-    <AssemblyName>Scen1</AssemblyName>
+    <RootNamespace>PSI1</RootNamespace>
+    <AssemblyName>PSI1</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,22 +42,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TrainingSeasions\AndTrainingSession.cs" />
-    <Compile Include="TrainingSeasions\AndTrainingSession00X1.cs" />
-    <Compile Include="TrainingSeasions\AndTrainingSession0XX1.cs" />
-    <Compile Include="TrainingSeasions\OrTrainingSession.cs" />
-    <Compile Include="TrainingSeasions\OrTrainingSession0X11.cs" />
-    <Compile Include="TrainingSeasions\OrTrainingSessionX111.cs" />
-    <Compile Include="TrainingSeasions\TrainingSession.cs" />
     <Compile Include="Perceptron.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Trainer.cs" />
-    <Compile Include="TrainingSeasions\XORTrainingSession.cs" />
+    <Compile Include="TrainingSessions\AndTrainingSession.cs" />
+    <Compile Include="TrainingSessions\AndTrainingSession00X1.cs" />
+    <Compile Include="TrainingSessions\AndTrainingSession0XX1.cs" />
+    <Compile Include="TrainingSessions\OrTrainingSession.cs" />
+    <Compile Include="TrainingSessions\OrTrainingSession0X11.cs" />
+    <Compile Include="TrainingSessions\OrTrainingSessionX111.cs" />
+    <Compile Include="TrainingSessions\TrainingSession.cs" />
+    <Compile Include="TrainingSessions\TrainingSessionWithIncompleteInput.cs" />
+    <Compile Include="TrainingSessions\XORTrainingSession.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

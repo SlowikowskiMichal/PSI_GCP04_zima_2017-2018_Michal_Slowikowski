@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Scen1
+﻿namespace Scen1
 {
     class Perceptron
     {
@@ -16,7 +10,6 @@ namespace Scen1
         {
             this.weights = weights;
         }
-
         public double[] getWeights()
         {
             return weights;
@@ -30,21 +23,7 @@ namespace Scen1
             double sum = inputSummary(input);
             return perceptronActivation(sum);
         }
-        public override string ToString()
-        {
-            string stringToReturn;
-
-            stringToReturn = "Weights:\n";
-
-            foreach (double weight in weights)
-            {
-                stringToReturn += weight + "\n";
-            }
-
-            return stringToReturn;
-        }
-
-        private double inputSummary(int[] input)
+        public double inputSummary(int[] input)
         {
             double sum = 0;
             for (int i = 0; i < input.Length; i++)

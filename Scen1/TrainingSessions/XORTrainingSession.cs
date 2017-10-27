@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Scen1.TrainingSeasions
+﻿namespace Scen1.TrainingSessions
 {
     class XORTrainingSession : TrainingSession
     {
@@ -14,3 +8,4 @@ namespace Scen1.TrainingSeasions
         }
     }
 }
+

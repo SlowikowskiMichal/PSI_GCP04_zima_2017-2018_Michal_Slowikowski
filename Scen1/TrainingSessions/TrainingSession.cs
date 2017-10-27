@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Scen1
+namespace Scen1.TrainingSessions
 {
     class TrainingSession
     {
@@ -21,6 +17,7 @@ namespace Scen1
                   };
             }
         }
+
         protected virtual int[] expectedOutput
         {
             get { return new int[] { 0, 0, 0, 0 }; }
@@ -38,21 +35,32 @@ namespace Scen1
             }
 
             Perceptron perceptron = new Perceptron(weights);
-            Trainer trainerAnd = new Trainer(inputData, expectedOutput, learningRate);
-
-            printResult(trainerAnd.train(ref perceptron),weights);
+            Trainer trainer = new Trainer(inputData, expectedOutput, learningRate);
+            trainer.train(ref perceptron);
+          //  printResult(, checkIfPerceptronReturnsExpectedOutput(perceptron), weights);
 
             return perceptron;
         }
 
-        private void printResult(bool trainingStatus, double[] weights)
+        private void printResult(bool trainingStatus, bool testResult, double[] weights)
         {
-            Console.WriteLine("Perceptron passed training: " + trainingStatus + "\nWeights: ");
-            for(int i = 0; i < weights.Length; i++)
+            Console.WriteLine("Perceptron passed training: " + trainingStatus);
+            Console.WriteLine("Perceptron test result: " + testResult);
+            Console.WriteLine("Weights:");
+            for (int i = 0; i < weights.Length; i++)
             {
                 Console.WriteLine("W" + i + ": " + weights[i]);
             }
-            Console.WriteLine("---------------------------------------------------");
+        }
+
+        protected virtual bool checkIfPerceptronReturnsExpectedOutput(Perceptron perceptron)
+        {
+            bool result = true;
+            for (int i = 0; i < expectedOutput.Length; i++)
+            {
+                result &= perceptron.getResult(inputData[i]).Equals(expectedOutput[i]);
+            }
+            return result;
         }
     }
 }
