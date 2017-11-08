@@ -36,7 +36,7 @@ namespace Scen1.TrainingSessions
 
             Perceptron perceptron = new Perceptron(weights);
             Trainer trainer = new Trainer(inputData, expectedOutput, learningRate);
-            trainer.train(ref perceptron);
+            trainer.Train(ref perceptron);
           //  printResult(, checkIfPerceptronReturnsExpectedOutput(perceptron), weights);
 
             return perceptron;

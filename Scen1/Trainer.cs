@@ -4,7 +4,6 @@ namespace Scen1
 {
     class Trainer
     {
-
         private int[][] inputDataSets;
         private int[] expectedOutputs;
         private double learningRate;
@@ -17,14 +16,14 @@ namespace Scen1
             this.learningRate = learningRate;
         }
 
-        public bool train(ref Perceptron perceptronToTrain)
+        public bool Train(ref Perceptron perceptronToTrain)
         {
             bool passed = false;
             int tryNumber = 0;
 
             do
             {
-                if (perceptronRule(ref perceptronToTrain) == 0)
+                if (PerceptronRule(ref perceptronToTrain) == 0)
                 {
                     passed = true;
                 }
@@ -36,7 +35,7 @@ namespace Scen1
             return passed;
         }
 
-        private double perceptronRule(ref Perceptron perceptron)
+        private double PerceptronRule(ref Perceptron perceptron)
         {
             int error;
             int biasID = inputDataSets[0].Length;
@@ -59,11 +58,11 @@ namespace Scen1
             }
 
             perceptron.setWeights(weights);
-            printDifferenceBetweenTargetAndPerceptronOutput(perceptron);
+            PrintDifferenceBetweenTargetAndPerceptronOutput(perceptron);
             return totalError;
         }
 
-        private void printDifferenceBetweenTargetAndPerceptronOutput(Perceptron perceptronToTrain)
+        private void PrintDifferenceBetweenTargetAndPerceptronOutput(Perceptron perceptronToTrain)
         {
             for (int i = 0; i < expectedOutputs.Length; i++)
             {

@@ -8,7 +8,10 @@ namespace Scen2
 {
     class Letters
     {
-        public static int[,,,] letters = new int[,,,] {
+        public static int NumberOfFields = 6;
+        public static int[] Expected = new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //1 = Big letter, 0 - Small letter 
+
+        public static int[,,,] LettersData = new int[,,,] {
             {
                 {
                     {0,1,1,1,0},
@@ -194,28 +197,26 @@ namespace Scen2
                 },                  //z
             }                       //Small Letters
         };
-
-        public static int[] getLetter(int size,int letter)
+        public static int[] GetLetter(int size,int letter)
         {
-            int[] result = new int[7];
+            int[] result = new int[6];
 
-            result[0] = getResult(size, letter, 0, 0, 2, 3);
-            result[1] = getResult(size, letter, 2, 0, 3, 3);
-            result[2] = getResult(size, letter, 3, 0, 5, 3);
-            result[3] = getResult(size, letter, 0, 3, 2, 7);
-            result[4] = getResult(size, letter, 2, 3, 3, 7);
-            result[5] = getResult(size, letter, 3, 3, 5, 7);
+            result[0] = GetResult(size, letter, 0, 0, 2, 3);
+            result[1] = GetResult(size, letter, 2, 0, 3, 3);
+            result[2] = GetResult(size, letter, 3, 0, 5, 3);
+            result[3] = GetResult(size, letter, 0, 3, 2, 7);
+            result[4] = GetResult(size, letter, 2, 3, 3, 7);
+            result[5] = GetResult(size, letter, 3, 3, 5, 7);
 
             return result;
         }
-
-        private static int getResult(int size, int letter, int startX, int startY, int endX, int endY)
+        private static int GetResult(int size, int letter, int startX, int startY, int endX, int endY)
         {
             for (int i = startY; i < endY; i++)
             {
                 for (int j = startX; j < endX; j++)
                 {
-                    if (letters[size, letter, i, j] == 1)
+                    if (LettersData[size, letter, i, j] == 1)
                     {
                         return 1;
                     }
@@ -224,7 +225,6 @@ namespace Scen2
 
             return 0;
         }
-
         private Letters()
         {
 
