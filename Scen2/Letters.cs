@@ -8,7 +8,13 @@ namespace Scen2
 {
     class Letters
     {
-        public static int NumberOfFields = 6;
+
+        public static int WidthOfLetterArray = 5;
+        public static int HeightOfLetterArray = 7;
+
+        public static int NumberOfFieldsX = 5;
+        public static int NumberOfFieldsY = 4;
+        public static int NumberOfFields = NumberOfFieldsX * NumberOfFieldsY;
         public static int[] Expected = new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //1 = Big letter, 0 - Small letter 
 
         public static int[,,,] LettersData = new int[,,,] {
@@ -199,15 +205,30 @@ namespace Scen2
         };
         public static int[] GetLetter(int size,int letter)
         {
-            int[] result = new int[6];
+            int[] result = new int[NumberOfFields];
 
-            result[0] = GetResult(size, letter, 0, 0, 2, 3);
-            result[1] = GetResult(size, letter, 2, 0, 3, 3);
-            result[2] = GetResult(size, letter, 3, 0, 5, 3);
-            result[3] = GetResult(size, letter, 0, 3, 2, 7);
-            result[4] = GetResult(size, letter, 2, 3, 3, 7);
-            result[5] = GetResult(size, letter, 3, 3, 5, 7);
+            int dx = (WidthOfLetterArray * 10 / NumberOfFieldsX + 9) / 10;
+            int dy = (70 / NumberOfFieldsY + 9) / 10;
+            int count = 0;
 
+            for (int y = dy; y <= HeightOfLetterArray; y+=dy)
+            {
+                for(int x = dx; x <= WidthOfLetterArray; x+=dx)
+                {
+                    if (y > HeightOfLetterArray)
+                    {
+                        dy += HeightOfLetterArray - y;
+                        y = HeightOfLetterArray;
+                    }
+                    if (x > WidthOfLetterArray)
+                    {
+                        dx += WidthOfLetterArray - x;
+                        x = WidthOfLetterArray;
+                    }
+                    result[count] = GetResult(size, letter, x -dx, y-dy, x, y);
+                    count++;
+                }
+            }
             return result;
         }
         private static int GetResult(int size, int letter, int startX, int startY, int endX, int endY)
