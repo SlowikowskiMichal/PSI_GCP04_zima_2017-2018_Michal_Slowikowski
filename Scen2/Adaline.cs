@@ -36,7 +36,7 @@ namespace Scen2
         protected int PerceptronActivation(double sum)
         {
             int active = 1;
-            int inactive = 0;
+            int inactive = -1;
 
             if (sum >= treshold)
             {

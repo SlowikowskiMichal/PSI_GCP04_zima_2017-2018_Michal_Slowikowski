@@ -11,7 +11,7 @@ namespace Scen2
     {
         static void Main(string[] args)
         {
-            double learningRate = 0.001;
+            double learningRate = 0.1;
 
             FileStream ostrm;
             StreamWriter writer;
