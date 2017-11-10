@@ -56,12 +56,9 @@ namespace Scen2
                             rate--;
                     }
                 }
-//                Console.WriteLine("Error: " + error);
-//                Console.WriteLine("-----------------------");
                 counter++;
-                Console.WriteLine(rate / 20 * 100 + "% success rate");
-                //                perceptronToLearn.PrintWeights();
-            } while (error > 0.0001 && counter < Max);
+                Console.WriteLine("Error: " + error/Letters.NumberOfFields);
+            } while (error > 0.1 && counter < Max);
             Console.WriteLine("Lerned after: " + counter);
         }
 

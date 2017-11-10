@@ -39,10 +39,8 @@ namespace Scen2
             int[] expected = GetExpected();
             int counter = 0;
             double error;
-            double rate;
             do
             {
-                rate = 20;
                 error = 0;
                 for (int i = 0; i < 2; i++)
                 {
@@ -52,19 +50,12 @@ namespace Scen2
                         letter = Letters.GetLetter(i, j, Letters.LettersData);
                         output[letterID] = adalineToLearn.GetResult(letter);
                         adalineToLearn.Learn(letter, expected[letterID], learningRate);
-                        //                       Console.WriteLine("Expected: " + Letters.Expected[letterID] + " Got: " + output[letterID]);
                         error += Math.Pow((expected[letterID] - output[letterID]), 2);
-                        if (expected[letterID] != adalineToLearn.Test(letter))
-                            rate--;
                     }
                 }
-
-                error /= 2.0;
-                //                Console.WriteLine("Error: " + error);
-                //                Console.WriteLine("-----------------------");
+                error /= 35.0;
+                Console.WriteLine("Error: " + error);
                 counter++;
-                Console.WriteLine(rate / 20 * 100 + "% success rate");
-                //                adalineToLearn.PrintWeights();
             } while (error > 0.1 && counter < Max);
             Console.WriteLine("Error: " + error);
             Console.WriteLine("Lerned after: " + counter);
@@ -86,9 +77,8 @@ namespace Scen2
             int[] output = new int[Letters.Expected.Length];
             int letterID;
             int[] letter = new int[Letters.NumberOfFields];
-            int[] expected = GetExpected();
             double rate = 20;
-            Console.WriteLine("Expected\tGot\tAfter Activation");
+            Console.WriteLine("Expected\tGot ");
             for (int i = 0; i < 2; i++)
             {
                 for (int j = 0; j < 10; j++)
@@ -96,15 +86,15 @@ namespace Scen2
                     letterID = i * 10 + j;
                     letter = Letters.GetLetter(i, j, data);
                     output[letterID] = adalineToLearn.Test(letter);
-                    Console.WriteLine(expected[letterID] + "\t" + adalineToLearn.GetResult(letter) + "\t" + output[letterID]);
-                    if (expected[letterID] != output[letterID])
+                    Console.WriteLine(Letters.Expected[letterID] + "\t" + output[letterID]);
+                    if (Letters.Expected[letterID] != output[letterID])
                         rate--;
                 }
             }
             Console.WriteLine(rate / 20 * 100 + "% success rate");
         }
 
-        private int[] GetExpected()
+    private int[] GetExpected()
         {
             int[] expected = Letters.Expected;
 
