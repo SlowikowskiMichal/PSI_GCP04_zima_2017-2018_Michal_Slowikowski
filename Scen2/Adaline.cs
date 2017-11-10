@@ -6,21 +6,20 @@ using System.Threading.Tasks;
 
 namespace Scen2
 {
-    class Perceptron
+    class Adaline
     {
         protected double[] weights;
         protected double bias = 1;
         protected double treshold = 0;
 
-        public Perceptron(double[] weights)
+        public Adaline(double[] weights)
         {
             this.weights = weights;
         }
 
-        public int GetResult(int[] input)
+        public double GetResult(int[] input)
         {
-            double sum = InputSummary(input);
-            return PerceptronActivation(sum);
+            return InputSummary(input);
         }
 
         protected double InputSummary(int[] input)
@@ -59,9 +58,15 @@ namespace Scen2
             weights[Letters.NumberOfFields] += lr * (expected - result);
         }
 
+        public int Test(int[] input)
+        {
+            double sum = InputSummary(input);
+            return PerceptronActivation(sum);
+        }
+
         public void PrintWeights()
         {
-            for(int i = 0; i < Letters.NumberOfFields; i++)
+            for (int i = 0; i < Letters.NumberOfFields; i++)
             {
                 Console.WriteLine("Weight " + i + " : " + weights[i]);
             }

@@ -10,8 +10,21 @@ namespace Scen2
     {
         static void Main(string[] args)
         {
-            PercetronTrainer trainer = new PercetronTrainer(6, 0.01);
+            Console.WriteLine("Number of Width Fields: " + Letters.NumberOfFieldsX + " Number of Height Fields: " + Letters.NumberOfFieldsY);
+
+            Console.WriteLine("-------------------------Perceptron----------------------");
+            PercetronTrainer trainer = new PercetronTrainer(Letters.NumberOfFields, 0.1);
             trainer.Train();
+            trainer.Test(Letters.LettersData);
+            trainer.Test(Letters.CorruptedLettersData);
+
+            Console.WriteLine("-------------------------Adaline----------------------");
+            AdalineTrainer trainerA = new AdalineTrainer(Letters.NumberOfFields, 0.1);
+            trainerA.Train();
+            trainerA.Test(Letters.LettersData);
+            trainerA.Test(Letters.CorruptedLettersData);
+
+            Console.ReadLine();
         }
     }
 }

@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Scen2
 {
-    class PercetronTrainer
+    class AdalineTrainer
     {
-        private Perceptron perceptronToLearn;
+        private Adaline adalineToLearn;
         private int biasID;
         private double learningRate;
         private int Max = 100000;
 
-        public PercetronTrainer(int numberOfPerceptrons, double learningRate)
+        public AdalineTrainer(int numberOfPerceptrons, double learningRate)
         {
             this.learningRate = learningRate;
 
@@ -21,19 +21,19 @@ namespace Scen2
             Random r = new Random();
             double[] weights = new double[Letters.NumberOfFields + 1];
 
-            for(int i = 0; i < numberOfPerceptrons; i++)
+            for (int i = 0; i < numberOfPerceptrons; i++)
             {
                 for (int j = 0; j < weights.Length; j++)
                 {
                     weights[i] = r.NextDouble();
                 }
-                perceptronToLearn = new Perceptron(weights);
+                adalineToLearn = new Adaline(weights);
             }
         }
 
         public void Train()
         {
-            int[] output = new int[Letters.Expected.Length];
+            double[] output = new double[Letters.Expected.Length];
             int letterID;
             int[] letter = new int[Letters.NumberOfFields];
             int counter = 0;
@@ -48,20 +48,24 @@ namespace Scen2
                     for (int j = 0; j < 10; j++)
                     {
                         letterID = i * 10 + j;
-                        letter = Letters.GetLetter(i, j,Letters.LettersData);
-                        output[letterID] = perceptronToLearn.GetResult(letter);
-                        perceptronToLearn.Learn(letter, Letters.Expected[letterID], learningRate);
-                        error += Math.Abs(Letters.Expected[letterID] - output[letterID]);
-                        if (Letters.Expected[letterID] != output[letterID])
+                        letter = Letters.GetLetter(i, j, Letters.LettersData);
+                        output[letterID] = adalineToLearn.GetResult(letter);
+                        adalineToLearn.Learn(letter, Letters.Expected[letterID], learningRate);
+                        //                       Console.WriteLine("Expected: " + Letters.Expected[letterID] + " Got: " + output[letterID]);
+                        error += Math.Pow((Letters.Expected[letterID] - output[letterID]), 2);
+                        if (Letters.Expected[letterID] != adalineToLearn.Test(letter))
                             rate--;
                     }
                 }
-//                Console.WriteLine("Error: " + error);
-//                Console.WriteLine("-----------------------");
+
+                error /= 2.0;
+                //                Console.WriteLine("Error: " + error);
+                //                Console.WriteLine("-----------------------");
                 counter++;
                 Console.WriteLine(rate / 20 * 100 + "% success rate");
-                //                perceptronToLearn.PrintWeights();
+                //                adalineToLearn.PrintWeights();
             } while (error > 0.0001 && counter < Max);
+            Console.WriteLine("Error: " + error);
             Console.WriteLine("Lerned after: " + counter);
         }
 
@@ -82,15 +86,15 @@ namespace Scen2
             int letterID;
             int[] letter = new int[Letters.NumberOfFields];
             double rate = 20;
-            Console.WriteLine("Expected\tGot ");
+            Console.WriteLine("Expected\tGot\tAfter Activation");
             for (int i = 0; i < 2; i++)
             {
                 for (int j = 0; j < 10; j++)
                 {
                     letterID = i * 10 + j;
                     letter = Letters.GetLetter(i, j, data);
-                    output[letterID] = perceptronToLearn.GetResult(letter);
-                    Console.WriteLine(Letters.Expected[letterID] + "\t" + output[letterID]);
+                    output[letterID] = adalineToLearn.Test(letter);
+                    Console.WriteLine(Letters.Expected[letterID] + "\t" + adalineToLearn.GetResult(letter) + "\t" + output[letterID]);
                     if (Letters.Expected[letterID] != output[letterID])
                         rate--;
                 }
