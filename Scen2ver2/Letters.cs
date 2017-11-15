@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Scen2
+namespace Scen2ver2
 {
     class Letters
     {
@@ -388,7 +388,7 @@ namespace Scen2
                 },                  //z
             }                       //Small Letters
         };
-        public static int[] GetLetter(int size,int letter, int [,,,] Data)
+        public static int[] GetLetter(int size, int letter, int[,,,] Data)
         {
             int[] result = new int[NumberOfFields];
 
@@ -396,9 +396,9 @@ namespace Scen2
             int dy = (70 / NumberOfFieldsY + 9) / 10;
             int count = 0;
 
-            for (int y = dy; y <= HeightOfLetterArray; y+=dy)
+            for (int y = dy; y <= HeightOfLetterArray; y += dy)
             {
-                for(int x = dx; x <= WidthOfLetterArray; x+=dx)
+                for (int x = dx; x <= WidthOfLetterArray; x += dx)
                 {
                     if (y > HeightOfLetterArray)
                     {
@@ -410,13 +410,13 @@ namespace Scen2
                         dx += WidthOfLetterArray - x;
                         x = WidthOfLetterArray;
                     }
-                    result[count] = GetResult(size, letter, x -dx, y-dy, x, y, Data);
+                    result[count] = GetResult(size, letter, x - dx, y - dy, x, y, Data);
                     count++;
                 }
             }
             return result;
         }
-        private static int GetResult(int size, int letter, int startX, int startY, int endX, int endY, int [,,,] Data)
+        private static int GetResult(int size, int letter, int startX, int startY, int endX, int endY, int[,,,] Data)
         {
             for (int i = startY; i < endY; i++)
             {
