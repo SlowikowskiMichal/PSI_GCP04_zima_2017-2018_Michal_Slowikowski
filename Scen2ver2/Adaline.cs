@@ -8,6 +8,7 @@ namespace Scen2ver2
 {
     class Adaline
     {
+
         protected double[] weights;
         protected double bias = 1;
         protected double treshold = 0;

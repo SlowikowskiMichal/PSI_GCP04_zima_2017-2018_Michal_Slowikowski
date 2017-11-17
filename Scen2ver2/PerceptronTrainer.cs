@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Scen2ver2
 {
-    class PerceptronTrainer
+    class PercetronTrainer
     {
         private Perceptron perceptronToLearn;
         private int biasID;
         private double learningRate;
         private int Max = 100000;
 
-        public PerceptronTrainer(int numberOfFields, double learningRate)
+        public PercetronTrainer(int numberOfPerceptrons, double learningRate)
         {
             this.learningRate = learningRate;
 
@@ -21,7 +21,7 @@ namespace Scen2ver2
             Random r = new Random();
             double[] weights = new double[Letters.NumberOfFields + 1];
 
-            for (int i = 0; i < numberOfFields; i++)
+            for (int i = 0; i < numberOfPerceptrons; i++)
             {
                 for (int j = 0; j < weights.Length; j++)
                 {
@@ -58,7 +58,7 @@ namespace Scen2ver2
                 }
                 counter++;
                 Console.WriteLine("Error: " + error / Letters.NumberOfFields);
-            } while (error > 0.1 && counter < Max);
+            } while (error > 0.01 && counter < Max);
             Console.WriteLine("Lerned after: " + counter);
         }
 
