@@ -11,40 +11,25 @@ namespace Scen2
     {
         static void Main(string[] args)
         {
-            double learningRate = 0.001;
+            double learningRate = 0.01;
 
-            FileStream ostrm;
-            StreamWriter writer;
-            TextWriter oldOut = Console.Out;
 
-            try
-            {
-                ostrm = new FileStream("X" + Letters.NumberOfFieldsX +"Y" + Letters.NumberOfFieldsY + "_" + learningRate + "Log.txt", FileMode.Create, FileAccess.Write);
-                writer = new StreamWriter(ostrm);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Cannot open " + Letters.NumberOfFieldsX + Letters.NumberOfFieldsY + "_" + learningRate + "Log.txt for writing");
-                Console.WriteLine(e.Message);
-                return;
-            }
-            Console.SetOut(writer);
             Console.WriteLine("Number of Width Fields: " + Letters.NumberOfFieldsX + " Number of Height Fields: " + Letters.NumberOfFieldsY);
 
             Console.WriteLine("-------------------------Perceptron----------------------");
-            PercetronTrainer trainer = new PercetronTrainer(Letters.NumberOfFields, learningRate);
+ /*           PercetronTrainer trainer = new PercetronTrainer(2, learningRate);
             trainer.Train();
+            Console.WriteLine("Testowanie nauki na danych poprawnych");
             trainer.Test(Letters.LettersData);
+            Console.WriteLine("Testowanie nauki na danych zaszumionych");
             trainer.Test(Letters.CorruptedLettersData);
-
-            Console.WriteLine("-------------------------Adaline----------------------");
-            AdalineTrainer trainerA = new AdalineTrainer(Letters.NumberOfFields, learningRate);
-            trainerA.Train();
-            trainerA.Test(Letters.LettersData);
-            trainerA.Test(Letters.CorruptedLettersData);
-
-            writer.Close();
-            ostrm.Close();
+            Console.ReadLine();
+            */
+            AdalineTrainer aTrainer = new AdalineTrainer(learningRate);
+            aTrainer.Train();
+            aTrainer.Test(Letters.LettersData);
+            aTrainer.Test(Letters.CorruptedLettersData);
+            Console.ReadLine();
         }
     }
 }

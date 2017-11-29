@@ -14,9 +14,10 @@ namespace Scen2
 
         public Perceptron(double[] weights)
         {
-            this.weights = weights;
+            this.weights = new double[weights.Length];
+            Array.Copy(weights, this.weights, weights.Length);
         }
-        public int GetResult(int[] input)
+        public double GetResult(int[] input)
         {
             double sum = InputSummary(input);
             return PerceptronActivation(sum);
@@ -24,11 +25,14 @@ namespace Scen2
         public void Learn(int[] input, double expected, double lr)
         {
             double result = GetResult(input);
+            double delta = expected - result;
+
+            double error = delta * Derive(InputSummary(input));
 
             for (int i = 0; i < input.Length; i++)
-                weights[i] += (expected - result) * lr * input[i];
+                weights[i] += error * lr * input[i];
 
-            weights[Letters.NumberOfFields] += lr * (expected - result);
+            weights[Letters.NumberOfFields] += lr * error;
         }
         public void PrintWeights()
         {
@@ -51,19 +55,14 @@ namespace Scen2
 
             return sum + weights[input.Length] * bias;
         }
-        protected int PerceptronActivation(double sum)
+        protected double PerceptronActivation(double sum)
         {
-            int active = 1;
-            int inactive = 0;
+            return 1 / (1 + Math.Exp(-sum));
+        }
 
-            if (sum >= treshold)
-            {
-                return active;
-            }
-            else
-            {
-                return inactive;
-            }
+        protected double Derive(double x)
+        {
+            return Math.Exp(x) / Math.Pow((Math.Exp(x) + 1), 2);
         }
     }
 }

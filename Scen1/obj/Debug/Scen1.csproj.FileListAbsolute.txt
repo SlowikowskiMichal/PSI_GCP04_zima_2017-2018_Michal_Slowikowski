@@ -7,6 +7,7 @@ c:\users\slovi\documents\visual studio 2017\Projects\PSI1\PSI1\obj\Debug\PSI1.pd
 C:\Users\slovi\Music\PSI\Scen1\bin\Debug\PSI1.exe.config
 C:\Users\slovi\Music\PSI\Scen1\bin\Debug\PSI1.exe
 C:\Users\slovi\Music\PSI\Scen1\bin\Debug\PSI1.pdb
-C:\Users\slovi\Music\PSI\Scen1\obj\Debug\Scen1.csprojResolveAssemblyReference.cache
 C:\Users\slovi\Music\PSI\Scen1\obj\Debug\PSI1.exe
 C:\Users\slovi\Music\PSI\Scen1\obj\Debug\PSI1.pdb
+C:\Users\slovi\Music\PSI\Scen1\bin\Debug\PSI1.exe.CodeAnalysisLog.xml
+C:\Users\slovi\Music\PSI\Scen1\bin\Debug\PSI1.exe.lastcodeanalysissucceeded

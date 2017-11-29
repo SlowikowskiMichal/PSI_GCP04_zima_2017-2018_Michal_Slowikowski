@@ -14,7 +14,8 @@ namespace Scen2
 
         public Adaline(double[] weights)
         {
-            this.weights = weights;
+            this.weights = new double [weights.Length];
+            Array.Copy(weights, this.weights, weights.Length);
         }
 
         public double GetResult(int[] input)
@@ -33,19 +34,9 @@ namespace Scen2
             return sum + weights[input.Length] * bias;
         }
 
-        protected int PerceptronActivation(double sum)
+        protected double PerceptronActivation(double sum)
         {
-            int active = 1;
-            int inactive = -1;
-
-            if (sum >= treshold)
-            {
-                return active;
-            }
-            else
-            {
-                return inactive;
-            }
+            return 1 / (1 + Math.Exp(sum));
         }
 
         public void Learn(int[] input, double expected, double lr)
@@ -58,7 +49,7 @@ namespace Scen2
             weights[Letters.NumberOfFields] += lr * (expected - result);
         }
 
-        public int Test(int[] input)
+        public double Test(int[] input)
         {
             double sum = InputSummary(input);
             return PerceptronActivation(sum);

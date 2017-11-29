@@ -15,9 +15,10 @@ namespace Scen2
         public static int NumberOfFieldsY = 7;
         public static int NumberOfFields = NumberOfFieldsX * NumberOfFieldsY;
         public static int[] Expected = new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //1 = Big letter, 0 - Small letter 
+        public static char[] Character = new char[] { 'A', 'C', 'F', 'G', 'I', 'N', 'O', 'R', 'S', 'Z', 'a', 'c', 'f', 'g', 'i', 'n', 'o', 'r', 's', 'z' };
 
-        public static int[,,,] LettersData = new int[,,,] {
-            {
+        public static int[,,] LettersData = new int[,,] {
+            
                 {
                     {0,1,1,1,0},
                     {1,0,0,0,1},
@@ -108,8 +109,8 @@ namespace Scen2
                     {1,0,0,0,0},
                     {1,1,1,1,1}
                 },                  //Z
-            },                      //Big Letters
-            {
+                                  //Big Letters
+            
                 {
                     {0,0,0,0,0},
                     {0,0,0,0,0},
@@ -199,12 +200,12 @@ namespace Scen2
                     {0,0,1,0,0},
                     {0,1,0,0,0},
                     {0,1,1,1,0}
-                },                  //z
-            }                       //Small Letters
+                }                   //z
+                                    //Small Letters
         };
-        public static int[,,,] CorruptedLettersData = new int[,,,] {
+        public static int[,,] CorruptedLettersData = new int[,,] {
             {
-                {
+                
                     {0,1,1,1,0},
                     {1,0,0,0,1},
                     {1,0,1,0,1},
@@ -294,8 +295,8 @@ namespace Scen2
                     {1,0,0,0,0},
                     {1,1,1,1,1}
                 },                  //Z
-            },                      //Big Letters
-            {
+                                  //Big Letters
+            
                 {
                     {0,0,0,0,0},
                     {0,0,0,0,0},
@@ -385,51 +386,21 @@ namespace Scen2
                     {0,0,1,0,0},
                     {0,1,0,0,0},
                     {0,0,1,1,1}
-                },                  //z
-            }                       //Small Letters
+                }                   //z
+                                    //Small Letters
         };
-        public static int[] GetLetter(int size,int letter, int [,,,] Data)
+        public static int[] GetLetter(int number, int[,,] data)
         {
             int[] result = new int[NumberOfFields];
-
-            int dx = (WidthOfLetterArray * 10 / NumberOfFieldsX + 9) / 10;
-            int dy = (70 / NumberOfFieldsY + 9) / 10;
-            int count = 0;
-
-            for (int y = dy; y <= HeightOfLetterArray; y+=dy)
+            for(int i = 0; i < NumberOfFieldsY; i++)
             {
-                for(int x = dx; x <= WidthOfLetterArray; x+=dx)
+                for(int j = 0; j < NumberOfFieldsX; j++)
                 {
-                    if (y > HeightOfLetterArray)
-                    {
-                        dy += HeightOfLetterArray - y;
-                        y = HeightOfLetterArray;
-                    }
-                    if (x > WidthOfLetterArray)
-                    {
-                        dx += WidthOfLetterArray - x;
-                        x = WidthOfLetterArray;
-                    }
-                    result[count] = GetResult(size, letter, x -dx, y-dy, x, y, Data);
-                    count++;
+                    result[i * NumberOfFieldsX + j] = data[number, i, j];
                 }
             }
+
             return result;
-        }
-        private static int GetResult(int size, int letter, int startX, int startY, int endX, int endY, int [,,,] Data)
-        {
-            for (int i = startY; i < endY; i++)
-            {
-                for (int j = startX; j < endX; j++)
-                {
-                    if (Data[size, letter, i, j] == 1)
-                    {
-                        return 1;
-                    }
-                }
-            }
-
-            return 0;
         }
         private Letters()
         {

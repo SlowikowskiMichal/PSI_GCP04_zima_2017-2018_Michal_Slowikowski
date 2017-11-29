@@ -8,16 +8,19 @@ namespace Scen2
 {
     class PercetronTrainer
     {
-        private Perceptron perceptronToLearn;
+        private Perceptron[] layer;
+        private double[] results;
         private int biasID;
         private double learningRate;
-        private int Max = 100000;
+        private int Max = 100000000;
 
         public PercetronTrainer(int numberOfPerceptrons, double learningRate)
         {
             this.learningRate = learningRate;
-
             biasID = Letters.NumberOfFields;
+            layer = new Perceptron[numberOfPerceptrons];
+            results = new double[numberOfPerceptrons];
+
             Random r = new Random();
             double[] weights = new double[Letters.NumberOfFields + 1];
 
@@ -25,74 +28,102 @@ namespace Scen2
             {
                 for (int j = 0; j < weights.Length; j++)
                 {
-                    weights[i] = r.NextDouble();
+                    weights[j] = r.NextDouble();
                 }
-                perceptronToLearn = new Perceptron(weights);
+                layer[i] = new Perceptron(weights);
             }
         }
 
         public void Train()
         {
-            int[] output = new int[Letters.Expected.Length];
-            int letterID;
-            int[] letter = new int[Letters.NumberOfFields];
             int counter = 0;
-            double error;
-            double rate;
+            int[] input;
+            int expected;
+            double result;
+            double mseError;
             do
             {
-                rate = 20;
-                error = 0;
-                for (int i = 0; i < 2; i++)
+                mseError = 0.0;
+                for (int i = 0; i < Letters.Expected.Length; i++)
                 {
-                    for (int j = 0; j < 10; j++)
+                    for(int j = 0; j < 2; j++)
                     {
-                        letterID = i * 10 + j;
-                        letter = Letters.GetLetter(i, j,Letters.LettersData);
-                        output[letterID] = perceptronToLearn.GetResult(letter);
-                        perceptronToLearn.Learn(letter, Letters.Expected[letterID], learningRate);
-                        error += Math.Abs(Letters.Expected[letterID] - output[letterID]);
-                        if (Letters.Expected[letterID] != output[letterID])
-                            rate--;
+                        input = Letters.GetLetter(i, Letters.LettersData);
+                        expected = GetExpected(Letters.Expected[i], j);
+                        layer[j].Learn(input, expected,learningRate);
+                        result = layer[j].GetResult(input);
+                        mseError += Math.Pow((expected - result), 2.0);
                     }
                 }
+                Console.WriteLine(mseError);
                 counter++;
-                Console.WriteLine("Error: " + error/Letters.NumberOfFields);
-            } while (error > 0.1 && counter < Max);
-            Console.WriteLine("Lerned after: " + counter);
+            } while (counter < Max && mseError > 0.001);
         }
 
-        private int[] GetLetter(int i, int j)
+        public void Test(int[,,] dataSet)
         {
-            int[] letter = new int[Letters.NumberOfFields];
-            for (int y = 0; y < Letters.NumberOfFieldsY; y++)
-                for (int x = 0; x < Letters.NumberOfFieldsX; x++)
-                    letter[y * Letters.NumberOfFieldsX + x] = Letters.LettersData[i, j, y, x];
-            return letter;
-        }
-
-
-        public void Test(int[,,,] data)
-        {
-            Console.WriteLine("------------------------Test-------------------------");
-            int[] output = new int[Letters.Expected.Length];
-            int letterID;
-            int[] letter = new int[Letters.NumberOfFields];
-            double rate = 20;
-            Console.WriteLine("Expected\tGot ");
-            for (int i = 0; i < 2; i++)
+            double rate = Letters.Expected.Length;
+            int[] input;
+            int expected;
+            for(int i = 0; i < Letters.Expected.Length; i++)
             {
-                for (int j = 0; j < 10; j++)
+                input = Letters.GetLetter(i, dataSet);
+                expected = Letters.Expected[i];
+
+                if (Act(input) != expected)
+                    rate--;
+
+                if(Act(input) == 1)
                 {
-                    letterID = i * 10 + j;
-                    letter = Letters.GetLetter(i, j, data);
-                    output[letterID] = perceptronToLearn.GetResult(letter);
-                    Console.WriteLine(Letters.Expected[letterID] + "\t" + output[letterID]);
-                    if (Letters.Expected[letterID] != output[letterID])
-                        rate--;
+                    Console.WriteLine("Duża");
+                }
+                else
+                {
+                    Console.WriteLine("Mała");
                 }
             }
-            Console.WriteLine(rate / 20 * 100 + "% success rate");
+            Console.WriteLine("Poprawne odpowiedzi: " + rate/20 * 100 + "%");
+        }
+        
+        private int GetLetterSizeFromLayer(int[] input)
+        {
+            for(int i = 0; i < results.Length; i++)
+            {
+                results[i] = layer[i].GetResult(input);
+            }
+
+            if(results[0] >= results[1])
+            {
+                return 0;
+            }
+
+            return 1;
+        }
+
+        private int GetExpected(int expected, int nr)
+        {
+            if(nr == 0)
+            {
+                return expected;
+            }
+            else if(expected > 0)
+            {
+                return 0;
+            }
+
+            return 1;
+        }
+
+        public int Act(int[] input)
+        {
+            if(layer[0].GetResult(input) > layer[1].GetResult(input))
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }
