@@ -11,20 +11,20 @@ namespace Scen2
     {
         static void Main(string[] args)
         {
-            double learningRate = 0.01;
+            double learningRate = 0.1;
 
 
             Console.WriteLine("Number of Width Fields: " + Letters.NumberOfFieldsX + " Number of Height Fields: " + Letters.NumberOfFieldsY);
 
             Console.WriteLine("-------------------------Perceptron----------------------");
- /*           PercetronTrainer trainer = new PercetronTrainer(2, learningRate);
+            PercetronTrainer trainer = new PercetronTrainer(2, learningRate);
             trainer.Train();
             Console.WriteLine("Testowanie nauki na danych poprawnych");
             trainer.Test(Letters.LettersData);
             Console.WriteLine("Testowanie nauki na danych zaszumionych");
             trainer.Test(Letters.CorruptedLettersData);
             Console.ReadLine();
-            */
+            
             AdalineTrainer aTrainer = new AdalineTrainer(learningRate);
             aTrainer.Train();
             aTrainer.Test(Letters.LettersData);
