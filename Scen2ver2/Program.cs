@@ -22,7 +22,7 @@ namespace Scen2ver2
                  t.PrintNeuralNetwork();
                  t.Learn();
                  t.Test();*/
-            //Test
+                 //Test
             int[,] xorStruktura = new int[2, 2] { { 2, 2 }, { 1, 2 }};
             XORTrainer tx = new XORTrainer(xorStruktura, learningRate);
             
