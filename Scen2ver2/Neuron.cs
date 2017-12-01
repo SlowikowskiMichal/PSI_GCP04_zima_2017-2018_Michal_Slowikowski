@@ -25,9 +25,9 @@ namespace Scen2ver2
         public void Learn(double[] input, double error, double lr)
         {
             for (int i = 0; i < input.Length; i++)
-                weights[i] -= error * lr * input[i];
+                weights[i] += error * lr * input[i];
 
-            weights[input.Length] -= lr * error;
+            weights[input.Length] += lr * error;
         }
         public double GetWeight(int numberOfInput)
         {

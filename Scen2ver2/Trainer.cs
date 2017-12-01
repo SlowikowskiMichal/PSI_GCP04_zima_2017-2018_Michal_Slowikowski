@@ -11,12 +11,12 @@ namespace Scen2ver2
         private Layer[] network;
         private const int Max = 100000;
 
-        public Trainer(int[,] neuralStructure)
+        public Trainer(int[,] neuralStructure, double learningRate)
         {
             network = new Layer[neuralStructure.GetLength(0)];
             for(int i = 0; i < neuralStructure.GetLength(0); i++)
             {
-                network[i] = new Layer(neuralStructure[i, 0], neuralStructure[i, 1]);
+                network[i] = new Layer(neuralStructure[i, 0], neuralStructure[i, 1], learningRate);
             }
         }
 
@@ -46,7 +46,7 @@ namespace Scen2ver2
             return output;
         }
 
-        public void Learn(double learningRate)
+        public void Learn()
         {
             double error;
             double totalError;

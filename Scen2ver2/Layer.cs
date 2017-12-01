@@ -10,10 +10,11 @@ namespace Scen2ver2
     {
         private Neuron[] neurons;
         private double[] errors;
-        private double learningRate = 0.03;
+        private double learningRate;
         public double[] lastOutput;
-        public Layer(int numberOfNeurons, int numberOfInputs)
+        public Layer(int numberOfNeurons, int numberOfInputs, double learningRate)
         {
+            this.learningRate = learningRate;
             lastOutput = new double[numberOfNeurons];
             neurons = new Neuron[numberOfNeurons];
             errors = new double[numberOfNeurons];
