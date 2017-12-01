@@ -62,7 +62,7 @@ namespace Scen2
 
         protected double Derive(double x)
         {
-            return Math.Exp(x) / Math.Pow((Math.Exp(x) + 1), 2);
+            return Math.Exp(-x) / Math.Pow((Math.Exp(-x) + 1), 2);
         }
     }
 }

@@ -24,12 +24,10 @@ namespace Scen2ver2
         }
         public void Learn(double[] input, double error, double lr)
         {
-            double div = Derive(InputSummary(input));
-
             for (int i = 0; i < input.Length; i++)
-                weights[i] += error * lr * div * input[i];
+                weights[i] -= error * lr * input[i];
 
-            weights[input.Length] = lr * error;
+            weights[input.Length] -= lr * error;
         }
         public double GetWeight(int numberOfInput)
         {
@@ -54,7 +52,9 @@ namespace Scen2ver2
                 sum += weights[i] * input[i];
             }
 
-            return sum + weights[input.Length] * BIAS;
+            sum += weights[input.Length];
+
+            return sum;
         }
         protected double PerceptronActivation(double sum)
         {
@@ -62,8 +62,7 @@ namespace Scen2ver2
         }
         protected double Derive(double x)
         {
-            double div = Math.Exp(x) / Math.Pow((Math.Exp(x) + 1), 2);
-            return div;
+            return (1 - PerceptronActivation(x)) * PerceptronActivation(x);
         }
     }
 }

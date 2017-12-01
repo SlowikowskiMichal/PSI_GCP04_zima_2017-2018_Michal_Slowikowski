@@ -9,13 +9,10 @@ namespace Scen2ver2
     class Trainer
     {
         private Layer[] network;
-        private const int Max = 10000;
-        private double[,] input;
-        private double[] expected;
+        private const int Max = 100000;
+
         public Trainer(int[,] neuralStructure)
         {
-            input = new double[,] { { 0.0, 0.0 }, { 0.0, 1.0 }, { 1.0, 0.0 }, { 0.0, 0.0 } };
-            expected = new double[] { 0.0, 1.0, 1.0, 0.0 };
             network = new Layer[neuralStructure.GetLength(0)];
             for(int i = 0; i < neuralStructure.GetLength(0); i++)
             {
@@ -55,30 +52,29 @@ namespace Scen2ver2
             double totalError;
             int counter = 0;
             double output;
+            double expected;
             double pirvE;
-            double[] data = new double[2];
             do
             {
                 totalError = 0.0;
-                for(int i = 0; i < expected.Length; i++)
+                for(double x = -2; x <= 2; x+=0.2)
                 {
-                    output = 0.0;
-                    data[0] = input[i, 0];
-                    data[1] = input[i, 1];
-                    output = GetOutput(data);
-                    if (output > 0.5)
-                        output = 1;
-                    else
-                        output = 0;
-                    error = expected[i] - output;
-                    //Console.WriteLine("True Expected: " + (expected*80-40) + " Expected: " + expected + " Got: " + output + " Error: " + error);
-                    totalError += Math.Pow(error,2)/2;
-                    BackPropagation(error, data); 
+                    for(double y = -2; y <= 2; y+=0.2)
+                    {
+                        output = 0.0;
+                        expected = (RastrignsProvider.CalculateResult(x, y)+50)/100;
+                        double[] input = new double[] { x, y };
+                        output = GetOutput(input);
+                        error = expected - output;
+                       // Console.WriteLine("True Expected: " + (expected*80-40) + " Expected: " + expected + " Got: " + output + " Error: " + error);
+                        totalError += Math.Pow(error,2)/2;
+                        BackPropagation(error, input);
+                    }
                 }
                 counter++;
                 pirvE = totalError;
-                Console.WriteLine(totalError);
-                Console.WriteLine("-----------------------------------------------------------------------------------------");
+                Console.WriteLine(totalError + "\t" + counter);
+              //  Console.WriteLine("-----------------------------------------------------------------------------------------");
             } while (totalError > 0.001 && counter < Max);
             Console.WriteLine(counter);
             Console.ReadLine();
@@ -86,29 +82,44 @@ namespace Scen2ver2
 
         public void Test()
         {
-
+            double error;
+            double totalError;
 
             double output;
-            double[] data = new double[2];
-            for (int i = 0; i < expected.Length; i++)
+            double expected;
+
+            int c = 0;
+            totalError = 0.0;
+            for (double x = -2; x <= 2; x += 0.1)
             {
-                data[0] = input[i, 0];
-                data[1] = input[i, 1];
-                output = GetOutput(data);
-                Console.WriteLine("Got: " + output + " Expected: " + expected[i]);
-
+                for (double y = -2; y <= 2; y += 0.1)
+                {
+                    output = 0.0;
+                    expected = (RastrignsProvider.CalculateResult(x, y) + 50) / 100;
+                    double[] input = new double[] { x, y };
+                    output = GetOutput(input);
+                    error = expected - output;
+                    Console.WriteLine(x + " " + y);
+                    Console.WriteLine("True Expected: " + (expected*100-50) + " Expected: " + expected + 
+                        "\nTrue Got: " + (output*100-50) + " Got: " + output + " Error: " + error);
+                    totalError += Math.Abs(error);
+                    c++;
+                }
             }
-
+            Console.WriteLine("Sredni blad: " + totalError/c);
+            Console.WriteLine("Total error: " + totalError);
             Console.ReadLine();
         }
 
         public void BackPropagation(double error, double[] input)
         {
-            double[] result = new double[] { error };
+            double[] errorsFromNextLayer = new double[] { error };
+
+            errorsFromNextLayer = network[network.Length - 1].CalculateLastError(errorsFromNextLayer);
 
             for(int i = network.Length-2; i >= 0; i--)
             {
-                result = network[i].CalculateError(result,network[i+1]);
+                errorsFromNextLayer = network[i].CalculateError(errorsFromNextLayer,network[i+1]);
             }
 
             CalculateNewWeights(input);
@@ -121,7 +132,7 @@ namespace Scen2ver2
             for(int i = 0; i < network.Length; i++)
             {
                 network[i].CalculateNewWeights(result);
-                result = network[i].CalculateOutput(result);
+                result = network[i].lastOutput;
             }
         }
     }

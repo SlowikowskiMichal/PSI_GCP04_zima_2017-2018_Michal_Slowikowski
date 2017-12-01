@@ -10,9 +10,11 @@ namespace Scen2ver2
     {
         private Neuron[] neurons;
         private double[] errors;
-        private double learningRate = 0.001;
+        private double learningRate = 0.03;
+        public double[] lastOutput;
         public Layer(int numberOfNeurons, int numberOfInputs)
         {
+            lastOutput = new double[numberOfNeurons];
             neurons = new Neuron[numberOfNeurons];
             errors = new double[numberOfNeurons];
             for(int i = 0; i < numberOfNeurons; i++)
@@ -41,6 +43,28 @@ namespace Scen2ver2
             }
         }
 
+        public double[] CalculateLastError(double[] outputError)
+        {
+            for (int i = 0; i < errors.Length; i++)
+            {
+                errors[i] = lastOutput[i]*(1-lastOutput[i])*outputError[i];
+            }
+            return errors;
+        }
+        public double[] CalculateError(double[] errorsFromNexLayer, Layer nextLayer)
+        {
+            for(int i = 0; i < errors.Length; i++)
+            {
+                errors[i] = 0.0;
+                for(int j = 0; j < errorsFromNexLayer.Length; j++)
+                {
+                    errors[i] = errorsFromNexLayer[j] * nextLayer.GetWeights(i)[j];
+                }
+
+                errors[i] *= lastOutput[i]*(1-lastOutput[i]);
+            }
+            return errors;
+        }
         public double[] CalculateOutput(double[] input)
         {
             double[] result = new double[neurons.Length];
@@ -48,21 +72,8 @@ namespace Scen2ver2
             {
                 result[i] = neurons[i].GetResult(input);
             }
+            Array.Copy(result, lastOutput, lastOutput.Length);
             return result;
-        }
-
-        public double[] CalculateError(double[] input, Layer nextLayer)
-        {
-            double[] weights;
-            for (int i = 0; i < neurons.Length; i++)
-            {
-                weights = nextLayer.GetWeights(i);
-                for (int j = 0; j < input.Length; j++)
-                {
-                    errors[i] += weights[j] * input[j];             
-                }
-            }
-            return errors;
         }
 
         public double[] GetWeights(int neuronNumber)
@@ -75,13 +86,13 @@ namespace Scen2ver2
 
             return weights;
         }
-
         public void CalculateNewWeights(double[] input)
         {
             for(int i = 0; i < neurons.Length; i++)
             {
                 neurons[i].Learn(input, errors[i], learningRate);
             }
+            input = lastOutput;
         }
     }
 }
