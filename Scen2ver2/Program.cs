@@ -10,8 +10,8 @@ namespace Scen2ver2
     {
         static void Main(string[] args)
         {
-            int[,] struktura = new int[3, 2] { { 5, 2 }, { 3, 5 }, { 1,3} };
-            double learningRate = 0.1;
+            int[,] struktura = new int[3, 2] { { 10, 2 }, { 3,10}, { 1, 3 } };
+            double learningRate = 1;
             /*Console.WriteLine("Wygląd struktury: ");
             for(int i = 0; i < struktura.GetLength(0); i++)
             {

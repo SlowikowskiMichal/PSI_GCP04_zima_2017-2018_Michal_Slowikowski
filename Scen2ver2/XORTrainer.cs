@@ -74,7 +74,7 @@ namespace Scen2ver2
 
                 counter++;
                 pirvE = totalError;
-                Console.WriteLine(totalError + "\t" + counter);
+                Console.WriteLine(totalError);
                 //  Console.WriteLine("-----------------------------------------------------------------------------------------");
             } while (totalError > 0.001 && counter < Max);
             Console.WriteLine(counter);
