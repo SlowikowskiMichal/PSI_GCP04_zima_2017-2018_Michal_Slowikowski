@@ -26,10 +26,10 @@ namespace Scen3
         {
             for (int i = 0; i < input.Length; i++)
             {
-                weights[i] += ((1 - decay) * weights[i] + lr * output * input[i]);
+                weights[i] = ((1 - decay) * weights[i] + lr * output * input[i]);
                 
             }
-            bias += ((1 - decay) * bias + lr * output) ;
+            bias = ((1 - decay) * bias + lr * output) ;
             Normalize();
         }
         public void PrintWeights()

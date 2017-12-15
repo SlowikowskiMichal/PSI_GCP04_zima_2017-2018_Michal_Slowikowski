@@ -10,7 +10,7 @@ namespace Scen3
     {
         private HebbNeuron[] layer;
         private double learningRate;
-        private int Max = 10000;
+        private int Max = 1000;
         private double decay;
         private bool teacherFlag;
         int counter;
@@ -53,7 +53,6 @@ namespace Scen3
                 return false;
             }
             Console.WriteLine("Epoki: " + this.counter);
-            Console.ReadLine();
             return true;
         }
 
