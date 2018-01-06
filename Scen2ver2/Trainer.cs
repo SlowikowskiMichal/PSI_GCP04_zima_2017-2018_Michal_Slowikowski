@@ -9,7 +9,7 @@ namespace Scen2ver2
     class Trainer
     {
         private Layer[] network;
-        private const int Max = 100000;
+        private const int Max = 10000;
 
         public Trainer(int[,] neuralStructure, double learningRate)
         {
@@ -54,6 +54,7 @@ namespace Scen2ver2
             double output;
             double expected;
             double pirvE;
+            double lastErr = 10000000;
             do
             {
                 totalError = 0.0;
@@ -72,6 +73,10 @@ namespace Scen2ver2
                     }
                 }
                 counter++;
+                if (totalError > lastErr)
+                    totalError = 0.00001;
+                else
+                    lastErr = totalError;
                 pirvE = totalError;
                 Console.WriteLine(totalError + "\t" + counter);
               //  Console.WriteLine("-----------------------------------------------------------------------------------------");
@@ -90,9 +95,9 @@ namespace Scen2ver2
 
             int c = 0;
             totalError = 0.0;
-            for (double x = -2; x <= 2; x += 0.1)
+            for (double x = -2; x <= 2; x += 1)
             {
-                for (double y = -2; y <= 2; y += 0.1)
+                for (double y = -2; y <= 2; y += 1)
                 {
                     output = 0.0;
                     expected = (RastrignsProvider.CalculateResult(x, y) + 50) / 100;

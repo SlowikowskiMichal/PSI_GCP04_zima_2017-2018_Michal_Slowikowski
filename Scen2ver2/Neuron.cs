@@ -19,8 +19,10 @@ namespace Scen2ver2
 
         public double GetResult(double[] input)
         {
+            double result;
             double sum = InputSummary(input);
-            return PerceptronActivation(sum);
+            result = PerceptronActivation(sum);
+            return result;
         }
         public void Learn(double[] input, double error, double lr)
         {

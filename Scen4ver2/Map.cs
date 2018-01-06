@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Scen4ver1
+namespace Scen4ver2
 {
     class Map
     {
@@ -12,7 +12,7 @@ namespace Scen4ver1
         private int numberOfNeurons;
         private double lr;
         private double Max;
-        public Map(double learningRate, int numberOfNeurons,int iter)
+        public Map(double learningRate, int numberOfNeurons, int iter)
         {
             this.Max = iter;
             this.numberOfNeurons = numberOfNeurons;
@@ -42,7 +42,7 @@ namespace Scen4ver1
 
         public void Learn()
         {
-            
+
             double lenght;
             double min;
             int counter = 0;
@@ -55,7 +55,7 @@ namespace Scen4ver1
                     min = 0.0;
                     for (int j = 0; j < neuronMap.Length; j++)
                     {
-                        double[] input = DataProvider.GetInput(i,DataProvider.input);
+                        double[] input = DataProvider.GetInput(i, DataProvider.input);
                         lenght = neuronMap[j].CalculateEuclideanDistance(input);
                         if (lenght < min || j == 0)
                         {
@@ -70,7 +70,7 @@ namespace Scen4ver1
             } while (Max > counter);
         }
 
-        public void Test(double [,] inputArray)
+        public void Test(double[,] inputArray)
         {
             int neuronNumber;
             int[] responseCounter = new int[neuronMap.Length];
@@ -81,11 +81,14 @@ namespace Scen4ver1
                 double[] input = DataProvider.GetInput(i, inputArray);
                 neuronNumber = ClassifyInput(input);
                 responseCounter[neuronNumber]++;
-                Console.WriteLine("Got: " + neuronNumber);
+                Console.WriteLine(DataProvider.Character[i] + " Got: " + neuronNumber);
             }
-            foreach(int n in responseCounter)
+            int n;
+            for(int i = 0; i < responseCounter.Length; i++)
             {
-                Console.WriteLine("Count: " + n);
+                n = responseCounter[i];
+                if(n!=0)
+                Console.WriteLine("Neuron: " + i + " Count: " + n);
             }
         }
 

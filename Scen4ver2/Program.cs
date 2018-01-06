@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Scen4ver1
+namespace Scen4ver2
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Map m = new Map(0.9,150,500);
+            Map m = new Map(0.9, 20, 500);
             m.PrintMap();
             m.Learn();
             m.PrintMap();
