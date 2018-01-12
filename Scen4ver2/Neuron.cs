@@ -9,13 +9,13 @@ namespace Scen4ver2
     class Neuron
     {
         double[] weights;
-        public Neuron(double[] weights)
+        public Neuron(double[] weights)                         //kopiowanie tablicy z wagami
         {
             this.weights = new double[weights.Length];
             Array.Copy(weights, this.weights, weights.Length);
         }
 
-        public double CalculateEuclideanDistance(double[] input)
+        public double CalculateEuclideanDistance(double[] input)    //obliczanie dystansu
         {
             double sum = 0.0;
             for (int i = 0; i < input.Length; i++)
@@ -34,7 +34,12 @@ namespace Scen4ver2
             }
         }
 
-        public void CalculateNewWeights(double[] input, double lr)
+        public double[] GetWeights()
+        {
+            return weights;
+        }
+
+        public void CalculateNewWeights(double[] input, double lr)  //obliczanie nowych wag dla wygrywającego neuronu
         {
             for (int i = 0; i < input.Length; i++)
             {
@@ -42,6 +47,16 @@ namespace Scen4ver2
             }
 
             weights[input.Length] += lr * (1 - weights[input.Length]);
+        }
+
+        public void CalculateNewWeights(double[] input, double lr, double theta)    //obliczanie nowych wag dla neuronów znajdujących się w sąsiedztwie
+        {
+            for (int i = 0; i < input.Length; i++)
+            {
+                weights[i] += lr * theta * (input[i] - weights[i]);
+            }
+
+            weights[input.Length] += lr * theta * (1 - weights[input.Length]);
         }
     }
 }

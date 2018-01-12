@@ -10,13 +10,12 @@ namespace Scen4ver1
     {
         static void Main(string[] args)
         {
-            Map m = new Map(0.9,150,500);
-            m.PrintMap();
-            m.Learn();
-            m.PrintMap();
-            m.Test(DataProvider.testInput);
             Console.ReadLine();
-            m.Test(DataProvider.input);
+            Console.WriteLine("START");
+            Map m = new Map(0.1, 4, 1000);      //stworzenie mapy (learning rate, liczba neuronów, liczba cykli)
+            m.Learn();                          //nauczanie
+            m.Test(DataProvider.testInput);     //testowanie
+            m.PrintMap(DataProvider.testInput); //wyświetlanie mapy dając dane testowe
             Console.ReadLine();
         }
     }

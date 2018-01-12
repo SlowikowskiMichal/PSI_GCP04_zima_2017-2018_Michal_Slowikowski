@@ -10,13 +10,12 @@ namespace Scen4ver2
     {
         static void Main(string[] args)
         {
-            Map m = new Map(0.9, 20, 500);
-            m.PrintMap();
+            Map m = new Map(0.01, 9, 1000, 2);
             m.Learn();
-            m.PrintMap();
+  //          m.Test(DataProvider.input);
+  //          m.PrintMap(DataProvider.input);
             m.Test(DataProvider.testInput);
-            Console.ReadLine();
-            m.Test(DataProvider.input);
+            m.PrintMap(DataProvider.testInput);
             Console.ReadLine();
         }
     }
