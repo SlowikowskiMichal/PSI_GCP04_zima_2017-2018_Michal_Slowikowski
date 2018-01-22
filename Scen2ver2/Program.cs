@@ -10,32 +10,12 @@ namespace Scen2ver2
     {
         static void Main(string[] args)
         {
-            int[,] struktura = new int[1, 2] {
-            { 1, 2 } };
-            double learningRate = 0.005;
-            Console.WriteLine("Wygląd struktury: ");
-            for(int i = 0; i < struktura.GetLength(0); i++)
-            {
-                Console.WriteLine("Warstwa nr: " + i + " neurony: " + struktura[i, 0] + " input: " + struktura[i, 1]);
-            }
-            double[] input = new double[2] { 1, 2 };
-                 Trainer t = new Trainer(struktura, learningRate);
-                 t.PrintNeuralNetwork();
-                 t.Learn();
-                 t.Test();
-            /*     //Test
-            int[,] xorStruktura = new int[2, 2] { { 2, 2 }, { 1, 2 }};
-            XORTrainer tx = new XORTrainer(xorStruktura, learningRate);
-            
-            
-            tx.Learn();
-            tx.Test();
-
-           */
-            Console.WriteLine(t.GetOutput(input));
-           
+            int[] structure = new int[] { 3, 25, 15, 10, 5, 3, 1 };
+            Trainer t = new Trainer(structure, 0.1f, 100000);
+            t.Learn();
+            t.Test();
             Console.ReadLine();
         }
-        
+
     }
 }

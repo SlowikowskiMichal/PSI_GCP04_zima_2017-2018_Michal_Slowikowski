@@ -6,94 +6,130 @@ using System.Threading.Tasks;
 
 namespace Scen2ver2
 {
-    class Layer
+    public class Layer
     {
-        private Neuron[] neurons;
-        private double[] errors;
-        private double learningRate;
-        public double[] lastOutput;
-        public Layer(int numberOfNeurons, int numberOfInputs, double learningRate)
-        {
-            this.learningRate = learningRate;
-            lastOutput = new double[numberOfNeurons];
-            neurons = new Neuron[numberOfNeurons];
-            errors = new double[numberOfNeurons];
-            for(int i = 0; i < numberOfNeurons; i++)
-            {
-                errors[i] = 0.0;
-            }
-            Random r = new Random();
-            double[] weights = new double[numberOfInputs + 1];
+        int numberOfInputs;
+        int numberOfOuputs;
 
-            for (int i = 0; i < numberOfNeurons; i++)
+
+        public float[] outputs;
+        public float[] inputs;
+        public float[,] weights;
+        public float[,] weightsDelta;
+        public float[] gamma;
+        public float[] error;
+
+        public static Random random = new Random();
+
+        public Layer(int numberOfInputs, int numberOfOuputs)
+        {
+            this.numberOfInputs = numberOfInputs;
+            this.numberOfOuputs = numberOfOuputs;
+
+            outputs = new float[numberOfOuputs];
+            inputs = new float[numberOfInputs];
+            weights = new float[numberOfOuputs, numberOfInputs];
+            weightsDelta = new float[numberOfOuputs, numberOfInputs];
+            gamma = new float[numberOfOuputs];
+            error = new float[numberOfOuputs];
+
+            InitilizeWeights();
+        }
+
+        public void InitilizeWeights()
+        {
+            for (int i = 0; i < numberOfOuputs; i++)
             {
-                for (int j = 0; j < weights.Length; j++)
+                for (int j = 0; j < numberOfInputs; j++)
                 {
-                    weights[j] = r.NextDouble();
+                    weights[i, j] = (float)random.NextDouble() - 0.5f;
                 }
-                neurons[i] = new Neuron(weights);
+            }
+        }
+
+        public float[] FeedForward(float[] inputs)
+        {
+            this.inputs = inputs;
+
+            for (int i = 0; i < numberOfOuputs; i++)
+            {
+                outputs[i] = 0;
+                for (int j = 0; j < numberOfInputs; j++)
+                {
+                    outputs[i] += inputs[j] * weights[i, j];
+                }
+
+                outputs[i] = (float)Math.Tanh(outputs[i]);
+            }
+
+            return outputs;
+        }
+
+        public float TanHDer(float value)
+        {
+            return 1 - (value * value);
+        }
+
+        public void BackPropOutput(float[] expected)
+        {
+            for (int i = 0; i < numberOfOuputs; i++)
+                error[i] = outputs[i] - expected[i];
+
+            for (int i = 0; i < numberOfOuputs; i++)
+                gamma[i] = error[i] * TanHDer(outputs[i]);
+
+            for (int i = 0; i < numberOfOuputs; i++)
+            {
+                for (int j = 0; j < numberOfInputs; j++)
+                {
+                    weightsDelta[i, j] = gamma[i] * inputs[j];
+                }
+            }
+        }
+
+        public void BackPropHidden(float[] gammaForward, float[,] weightsFoward)
+        {
+            for (int i = 0; i < numberOfOuputs; i++)
+            {
+                gamma[i] = 0;
+
+                for (int j = 0; j < gammaForward.Length; j++)
+                {
+                    gamma[i] += gammaForward[j] * weightsFoward[j, i];
+                }
+
+                gamma[i] *= TanHDer(outputs[i]);
+            }
+
+            for (int i = 0; i < numberOfOuputs; i++)
+            {
+                for (int j = 0; j < numberOfInputs; j++)
+                {
+                    weightsDelta[i, j] = gamma[i] * inputs[j];
+                }
+            }
+        }
+
+        public void UpdateWeights(float learningRate)
+        {
+            for (int i = 0; i < numberOfOuputs; i++)
+            {
+                for (int j = 0; j < numberOfInputs; j++)
+                {
+                    weights[i, j] -= weightsDelta[i, j] * learningRate;
+                }
             }
         }
 
         public void PrintLayer()
         {
-            for(int i = 0; i < neurons.Length; i++)
+            for(int i = 0; i < numberOfInputs; i ++)
             {
-                Console.WriteLine("Neuron " + i);
-                neurons[i].PrintWeights();
-            }
-        }
-
-        public double[] CalculateLastError(double[] outputError)
-        {
-            for (int i = 0; i < errors.Length; i++)
-            {
-                errors[i] = lastOutput[i]*(1-lastOutput[i])*outputError[i];
-            }
-            return errors;
-        }
-        public double[] CalculateError(double[] errorsFromNexLayer, Layer nextLayer)
-        {
-            for(int i = 0; i < errors.Length; i++)
-            {
-                errors[i] = 0.0;
-                for(int j = 0; j < errorsFromNexLayer.Length; j++)
+                for(int j = 0; j < numberOfOuputs; j++)
                 {
-                    errors[i] = errorsFromNexLayer[j] * nextLayer.GetWeights(i)[j];
+                    Console.WriteLine(weights[i, j]);
                 }
-
-                errors[i] *= lastOutput[i]*(1-lastOutput[i]);
             }
-            return errors;
-        }
-        public double[] CalculateOutput(double[] input)
-        {
-            double[] result = new double[neurons.Length];
-            for(int i = 0; i < neurons.Length; i++)
-            {
-                result[i] = neurons[i].GetResult(input);
-            }
-            Array.Copy(result, lastOutput, lastOutput.Length);
-            return result;
-        }
-
-        public double[] GetWeights(int neuronNumber)
-        {
-            double[] weights = new double[neurons.Length];
-            for(int i = 0; i < weights.Length; i++)
-            {
-                weights[i] = neurons[i].GetWeight(neuronNumber);
-            }
-
-            return weights;
-        }
-        public void CalculateNewWeights(double[] input)
-        {
-            for(int i = 0; i < neurons.Length; i++)
-            {
-                neurons[i].Learn(input, errors[i], learningRate);
-            }
-            input = lastOutput;
         }
     }
 }
